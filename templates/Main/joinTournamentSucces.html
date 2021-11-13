@@ -1,0 +1,68 @@
+{% extends "Main/Design_Components/base.html" %}
+{% load static %}
+{% block title %} BD ESPORT | Registration Completed {% endblock %}
+
+{% block content %}
+
+
+
+
+<main id="main">
+<section>
+    <div class="container">
+        <div class="section-title">
+            {% for  ts in ft %}
+            <h2>Thank You {{ts.name}}..!</h2>
+            {%endfor%}
+            <p>For registering your team...to {{gt}}</p>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="card text-center">
+                    {% for  ts in ft %}
+                    <div class="card-header">
+
+                        {{ts.name}}
+
+                    </div>
+                    <div class="card-body"
+                         style="background-image: url('{{ ts.logo.url }}'); background-size:contain; background-position: center; background-repeat: no-repeat;">
+                        <ol class="team_table">
+                            {% for  m in ts.member.all %}
+                            <li>{{m.gaming_name}}</li>
+
+                            {%endfor%}
+                        </ol>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Direct Access
+                    </div>
+                    {%endfor%}
+                </div>
+            </div>
+        </div>
+        <div class="section-title mt-3">
+            <h5>You Must Pay The Tournament Entry Fee Via BKash To Finalize Your Registration</h5>
+            <button type="button" class="btn btn-success mt-2 ">
+                Make Payment
+            </button>
+        </div>
+        <hr>
+        <div class="section-title">
+            <h5>View Tournament Page</h5>
+<!---->
+            <a href = "{% url 'Tournament_Page' gt.slug %}">
+                <button type="button" class="btn btn-primary mt-2 ">
+                    {{gt}} Page
+                </button>
+            </a>
+
+
+            </button>
+        </div>
+
+    </div>
+</section>
+</main><!-- End #main -->
+{% endblock content %}

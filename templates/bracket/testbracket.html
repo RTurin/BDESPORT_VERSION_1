@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page Title</title>
+
+
+    <script type="text/javascript" src="{% static 'FinalBracket_assets/jquery-1.6.2.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'FinalBracket_assets/jquery.bracket.min.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'FinalBracket_assets/jquery.bracket.min.css' %}" />
+</head>
+<body>
+
+<div id="fixture" class="fixture">
+</div>
+
+
+<script>
+
+        var fixtureData = {
+    // Single Elimination
+        teams : [
+            ["Team 1",  "Team 2" ],
+            ["Team 3",  "Team 4" ],
+            ["Team 5",  "Team 6" ],
+            ["Team 7",  "Team 8" ],
+          /*
+            ["Team 9",  "Team 10"],
+            ["Team 11", "Team 12"],
+            ["Team 13", "Team 14"],
+            ["Team 15", "Team 16"]
+          */
+          ],
+
+          results : [[ /* WINNER BRACKET */
+            [[3,5], [2,4], [6,3], [2,3]],
+            [[1,2], [3,4]],
+            [[9,1]],
+          ], [         /* LOSER BRACKET */
+            [[5,1], [1,2]],
+            [[8,2], [1,2]],
+            [[3,2]],
+            [[3,2]],
+          ], [         /* FINALS */
+            [[3,8], [1,2]],
+            [[2,3]]
+          ]]
+        };
+
+        $(function () {
+            $('#fixture').bracket({
+                teamWidth: 150,
+                scoreWidth: 30,
+                matchMargin: 50,
+                roundMargin: 50,
+                skipConsolationRound: true,
+                init: fixtureData,
+                centerConnectors: true
+            });
+        })
+    </script>
+
+</body>
+</html>

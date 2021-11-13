@@ -1,0 +1,64 @@
+{% extends "frontend/Components/base.html" %}
+
+{% load static %}
+{% block title %} BD ESPORT | Registration Status {% endblock %}
+
+{% block content %}
+
+<div class="club-staff-top">
+    <div class="container">
+        <div class="row">
+            {% if get_team.is_verified == False%}
+            <div class="col-md-7">
+                <br>
+                <h5>Congratulation..!  {{get_team.team.name}}</h5>
+                <hr>
+                <p>Your Team Has been Registered to
+                    <span style="color:red;font-weight:bold">
+                     <a href="{% url 'Tournament_Page' get_team.tournament.slug %}">
+                         {{get_team.tournament.title}}
+                     </a>
+                    </span>
+                    as a <span style="color:red;font-weight:bold">Pending </span> Team</p>
+                <hr>
+                <p>Please make the Entry Fee Payment via BKash to confirm Your Registration</p>
+                <a href="{% url 'Payment' get_team.tournament.slug %}">
+                    <button type="submit" class="btn btn-primary btn-block mt-2"><b>Payment Instructions</b></button>
+                </a>
+
+            </div>
+            <div class="col-md-5 ">
+                <br>
+                <div class="esport_championship_participants col-md-8">
+                    <a href="{% url 'Team_View' get_team.team.slug %}">
+                        <img src="{% static 'frontend/' %}images/common/esport-participants-background.jpg" class="background-team" alt="background">
+                        <img src="{{get_team.team.logo.url}}" alt="team-logo">
+                        <span>{{get_team.team.name}}</span>
+                    </a>
+                </div>
+            </div>
+            {% else %}
+            <div class="col-md-6">
+                <h5>Congratulation..!  {{get_team.team.name}}</h5>
+                <hr>
+                <p>Your Team Has been Registered to <span style="color:red;font-weight:bold">{{get_team.tournament.title}}</span> as a Verified Registered Team</p>
+                <hr>
+                <a href="{% url 'Tournament_Page' get_team.tournament.slug %}">
+                    <button type="submit" class="btn btn-primary btn-block mt-2"><b>View Tournament</b></button>
+                </a>
+            </div>
+            <div class="col-md-6 ">
+                <br>
+                <div class="esport_championship_participants col-md-8">
+                    <a href="{% url 'Team_View' get_team.team.slug %}">
+                        <img src="{% static 'frontend/' %}images/common/esport-participants-background.jpg" class="background-team" alt="background">
+                        <img src="{{get_team.team.logo.url}}" alt="team-logo">
+                        <span>{{get_team.team.name}}</span>
+                    </a>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{%endblock content%}

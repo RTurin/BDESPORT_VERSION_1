@@ -1,0 +1,59 @@
+{% extends "frontend/Components/base.html" %}
+
+{% load static %}
+{% block title %} BD ESPORT | {{get_tournament}} {% endblock %}
+
+{% block content %}
+
+<!--BREADCRUMBS BEGIN-->
+<section class="image-header" style="background-image: url('{% static 'frontend/images/soccer/page-header-bg_Dota2_.jpg' %}');min-height:300px;">
+<!--<section class="image-header">-->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="info">
+                    <div class="wrap">
+                        <ul class="breadcrumbs">
+<!--                            <li><a href="{{prev_url}}">Back</a>/</li>-->
+<!--                            <li>{{get_tournament}}</li>-->
+                        </ul>
+                        <h1 class="text-center">{{get_tournament}}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--BREADCRUMBS END-->
+
+<section class="trophey-room">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+<!--                <p>1. Each Team must have 5 permanent players </p>-->
+<!--                <p>2. Must provide with correct information</p>-->
+<!--                <p>3. Tournament Entry Fee: BDT 1000 per team (Per player BDT 200)</p>-->
+<!--                <p>4. Payment must be cleared by {{get_tournament.reg_deadline}}.-->
+<!--                    Otherwise your teams registration will be cancelled.-->
+<!--                </p>-->
+<!--                <p>5.Payment must be paid via BKash. (Details available after registration)</p>-->
+<!--                <p>6. Tournament Format & Prizepool will be announced after-->
+<!--                    registration Deadline is over.-->
+
+<!--                </p>-->
+                {{get_tournament.remark|safe}}
+
+            </div>
+            <div class=" leave-comment-wrap col-md-12">
+                <hr>
+                <a href="{% url 'TeamRegistration' get_tournament.slug %}">
+                    <button class="comment-submit">Proceed to Registration</button>
+               </a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+{%endblock content%}

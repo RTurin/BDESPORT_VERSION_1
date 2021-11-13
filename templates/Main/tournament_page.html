@@ -1,0 +1,247 @@
+{% extends "Main/Design_Components/base.html" %}
+{% load static %}
+{% block title %} BD ESPORT | {{getTournament}} {% endblock %}
+
+{% block content %}
+
+
+<main id="main">
+
+    <section>
+        <div class="container">
+            <div class="section-title">
+                <h2>{{getTournament}}</h2>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="section-title">
+                <h3>Prize Pool</h3>
+                <p>BDT {{getTournament.prizepool}}  was spread among the teams as seen below:</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-5">
+                    <table class="table table-bordered colored-table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Place</th>
+                            <th scope="col">USD</th>
+                            <th scope="col">Team</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><img src="{% static 'assets/img/Gold.png' %}" style="width:25px;" alt=""> 1st</td>
+                            <td>will be announced soon</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><img src="{% static 'assets/img/Silver.png' %}" style="width:25px;" alt=""> 2nd</td>
+                            <td>will be announced soon</td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="section-title">
+                <h3> Participants</h3>
+            </div>
+            <div class="row">
+                {% for g_tournament in get_Tournament_Participates %}
+                <div class="col-lg-3 mt-2">
+                    <div class="card text-center">
+                        <div class="card-header">
+                            {{g_tournament.team.name}}
+                        </div>
+                        <div class="card-body"
+
+                             style="background-image: url('{{ g_tournament.team.logo.url }}'); background-size:50%; background-position: center; background-repeat: no-repeat;">
+
+                                <table class="team_table">
+                                    {% for  m in g_tournament.team.member.all %}
+
+                                    <tr>
+                                        <td>{{forloop.counter}}</td>
+                                        <td>{{m.gaming_name}}</td>
+                                    </tr>
+                                    {%endfor%}
+                                </table>
+<!--                            <ol class="team_table">-->
+<!--                                {% for  m in g_tournament.team.member.all %}-->
+
+<!--                                <li> {{m.gaming_name}}</li>-->
+
+<!--                                {%endfor%}-->
+<!--                            </ol>-->
+                        </div>
+                        <div class="card-footer text-muted">
+                            {%if g_tournament.status == True %}
+                            Payment Status: Paid
+                            {%else%}
+                            Payment: Not Paid
+                            {%endif%}
+                        </div>
+                    </div>
+                </div>
+                {%endfor%}
+
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="section-title">
+                <h2>Group Stage</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="section-title">
+                        <h5>Group A</h5>
+                    </div>
+                    <table class="table table-bordered colored-table1">
+                        <thead>
+                        <tr>
+                            <th scope="col">Sl.</th>
+                            <th scope="col">Team</th>
+                            <th scope="col"> Played	</th>
+                            <th scope="col">Wins</th>
+                            <th scope="col">Loses</th>
+                            <th scope="col">Draw</th>
+                            <th scope="col"> Points</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for ggsd in getGroupStageData %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td style ="width:40%"><img src="{{ggsd.team.logo.url}}" style="width:25px;" alt="">
+                                {{ggsd.team.shortname}}
+                            </td>
+                            <td>{{ggsd.totalmatches}}</td>
+                            <td>{{ggsd.win}}</td>
+                            <td>{{ggsd.lose}}</td>
+                            <td>{{ggsd.draw}}</td>
+                            <td>{{ggsd.totalpoints}}</td>=
+                        </tr>
+                        {%endfor%}
+                        <!-- <tr>
+                            <td><img src="{% static 'assets/img/Silver.png' %}" style="width:25px;" alt=""> 2nd</td>
+                            <td>$115</td>
+                            <td><img src="{% static 'assets/img/86px-Tundra_Esports_2020_allmode.png' %}" style="width:25px;" alt="">
+                                @fat
+                            </td>
+                        </tr> -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+
+        </div>
+    </section>
+
+
+    <section>
+        <div class="container">
+            <div class="section-title">
+                <h2>Matches</h2>
+
+            </div>
+
+            <div class="row">
+                {% for gmdata in getMatch %}
+                <div class="col-lg-5">
+                    <div class="section-title">
+                        <h6>{{gmdata.date}}</h6>
+                    </div>
+                    <table class="table table-bordered colored-table2">
+                        <tbody>
+                        <tr>
+                            <td class="text-center">
+                                {{gmdata.team1.shortname}}
+                                <img src="{{gmdata.team1.logo.url}} " style="width:25px;" alt="">
+                            </td>
+                            <td>{{gmdata.team1win}}</td>
+                            <td>vs</td>
+                            <td>{{gmdata.team2win}}</td>
+
+                            <td  class="text-center" ><img src="{{gmdata.team2.logo.url}} " style="width:25px;" alt="">
+                                {{gmdata.team2.shortname}}
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                    <table>
+
+
+                        {% for gh in gmdata.match.all %}
+                        <tr>
+                            {% for i in gh.heroesPickedRadiant.all %}
+                            <td>
+                                <img src="{{i.icon.url}} " style="width:25px;" alt="">
+                            </td>
+                            {%endfor%}
+
+                            {% for i in gh.heroesPickedDire.all %}
+                            <td>
+                                <img src="{{i.icon.url}} " style="width:25px;" alt="">
+                            </td>
+                            {%endfor%}
+                        </tr>
+                        {%endfor%}
+
+
+                    </table>
+                </div>
+                {%endfor%}
+
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="section-title">
+                <h2>Play Offs</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    {% for gmpo in getMatchPlayOffs %}
+
+                    <div class="round r-of-4">
+                        <div class="bracket-game">
+                            <div class="player top win">
+                                <img src="{{gmpo.team1.logo.url}} " style="width:20px;" alt=""> {{gmpo.team1.shortname}}
+                                <div class="score">
+                                    2
+                                </div>
+                            </div>
+                            <div class="player bot loss">
+                                <img src="{{gmpo.team2.logo.url}} " style="width:20px;" alt=""> {{gmpo.team2.shortname}}
+                                <div class="score">
+                                    1
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+</main><!-- End #main -->
+{% endblock content %}

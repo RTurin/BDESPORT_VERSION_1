@@ -1,0 +1,443 @@
+{% extends "frontend/Components/base.html" %}
+
+{% load static %}
+{% block title %} BD ESPORT {% endblock %}
+
+{% block content %}
+
+<!--BREADCRUMBS BEGIN-->
+<section class="image-header" style="background-image: url('{% static 'frontend/images/soccer/page-header-bg_Dota2_2_.jpg' %}');">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="info">
+                    <div class="wrap">
+                        <h1>{{get_tournament}}</h1>
+                    </div>
+                </div>
+            </div>	
+        </div>
+    </div>
+</section>
+<!--BREADCRUMBS END-->
+
+<!--TEAM REGISTRATION FORM BEIGINS-->
+<section class="checkout-wrap">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="alert team-alert fade in" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span class="fa fa-close" aria-hidden="true"></span></button> 
+                     <b>Do not have a Team...?</b>
+                    <a href="#">
+                    <b>Click here to Find a Team</b>
+                    </a>
+
+                </div>
+
+                <br>
+                <!-- <div class="alert team-alert fade in" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span class="fa fa-close" aria-hidden="true"></span></button> 
+                    Have a coupon? <a href="#">Click here to enter your code</a>
+                </div> -->
+                <h3 class="">Registration</h3>
+                <hr>
+            </div>
+            <div class="col-md-6">
+                <h4 >Team Informations</h4>
+
+                <div class="customer-info">
+                    <form  method="POST" enctype="multipart/form-data">
+                        {%  csrf_token %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-danger">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
+                        <div class="row">
+                            <!-- Team Informations -->
+                            <div class="col-md-6">
+                                <div class="item">
+                                    <label>
+                                        <span>Team Name<i>*</i></span>
+                                        <input type="text" name="name">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="item">
+                                    <label>
+                                        <span>Team Short Name (Max Length: 10)<i> *</i></span>
+                                        <input type="text" name="shortname" maxlength="10">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="item">
+                                    <label>
+                                        <span>Team Logo (If Available)<i> *</i> </span>
+                                        <input type="file" name="logo" class="form-control">
+<!--                                        <input class="file-upload-input" type='file' onchange="readURL(this);" name="logo" accept="image/*"  id="id_image"/>-->
+                                    </label>
+                                </div>
+                                <hr>
+                            </div>
+                            <!-- Team Informations  Ends-->
+
+                            <!-- Team Member Informations -->
+
+                            <h4 > Team Member Informations</h4>
+                            <hr>
+                            <h6 >Provide Player 1 Informations</h6>
+                            <hr>
+                            <div class="col-md-6">
+                                <div class="item">
+                                    <label>
+                                        <span>Full Name <i>*</i></span>
+                                        <input type="text" name="player1_fullName">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="item">
+                                    <label>
+                                        <span>Gaming Name <i>*</i></span>
+                                        <input type="text" name="player1_GamingName">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="item">
+                                    <label>
+                                        <span>Select Role <i>*</i></span>
+                                        <select class="basic" name="player1_Role">
+                                            <option value="SafeLane">SafeLane</option>
+                                            <option value="MidLane">MidLane</option>
+                                            <option value="OffLane">OffLane</option>
+                                            <option value="Soft Support">Soft Support</option>
+                                            <option value="Hard Support">Hard Support</option>
+                                        </select>
+                                    </label>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="item">
+                                    <label>
+                                        <span>Steam Id <i>*</i></span>
+                                        <input type="text" name="player1_SteamId">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="item">
+                                    <label>
+                                        <span>Player Id <i>*</i></span>
+                                        <input type="text" name="player1_PlayerId">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="item">
+                                    <label>
+                                        <span>Phone No# <i>*</i></span>
+                                        <input type="text" maxlength="11" minlength="11" name="player1_phoneNo">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="item">
+                                    <label>
+                                        <span>Email Address <i>*</i></span>
+                                        <input type="email"  name="player1_email">
+                                    </label>
+                                </div>`
+
+                            </div>
+
+                            <h6 > rovide Player 2 Informations</h6>
+                            <hr>
+                            <div class="col-md-6">
+                                <div class="item">
+                                    <label>
+                                        <span>Full Name <i>*</i></span>
+                                        <input type="text" name="player2_fullName">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="item">
+                                    <label>
+                                        <span>Gaming Name <i>*</i></span>
+                                        <input type="text" name="player2_GamingName">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="item">
+                                    <label>
+                                        <span>Select Role <i>*</i></span>
+                                        <select class="basic" name="player2_Role">
+                                            <option value="SafeLane">SafeLane</option>
+                                            <option value="MidLane">MidLane</option>
+                                            <option value="OffLane">OffLane</option>
+                                            <option value="Soft Support">Soft Support</option>
+                                            <option value="Hard Support">Hard Support</option>
+                                        </select>
+                                    </label>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="item">
+                                    <label>
+                                        <span>Steam Id <i>*</i></span>
+                                        <input type="text" name="player2_SteamId">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="item">
+                                    <label>
+                                        <span>Player Id <i>*</i></span>
+                                        <input type="text" name="player2_PlayerId">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="item">
+                                    <label>
+                                        <span>Phone No# <i>*</i></span>
+                                        <input type="text" maxlength="11" minlength="11" name="player2_phoneNo">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="item">
+                                    <label>
+                                        <span>Email Address <i>*</i></span>
+                                        <input type="email"  name="player2_email">
+                                    </label>
+                                </div>`
+                            </div>
+
+                            <h6 > rovide Player 3 Informations</h6>
+                            <hr>
+                            <div class="col-md-6">
+                                <div class="item">
+                                    <label>
+                                        <span>Full Name <i>*</i></span>
+                                        <input type="text" name="player3_fullName">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="item">
+                                    <label>
+                                        <span>Gaming Name <i>*</i></span>
+                                        <input type="text" name="player3_GamingName">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="item">
+                                    <label>
+                                        <span>Select Role <i>*</i></span>
+                                        <select class="basic" name="player3_Role">
+                                            <option value="SafeLane">SafeLane</option>
+                                            <option value="MidLane">MidLane</option>
+                                            <option value="OffLane">OffLane</option>
+                                            <option value="Soft Support">Soft Support</option>
+                                            <option value="Hard Support">Hard Support</option>
+                                        </select>
+                                    </label>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="item">
+                                    <label>
+                                        <span>Steam Id <i>*</i></span>
+                                        <input type="text" name="player3_SteamId">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="item">
+                                    <label>
+                                        <span>Player Id <i>*</i></span>
+                                        <input type="text" name="player3_PlayerId">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="item">
+                                    <label>
+                                        <span>Phone No# <i>*</i></span>
+                                        <input type="text" maxlength="11"
+                                               minlength="11" name="player3_phoneNo">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="item">
+                                    <label>
+                                        <span>Email Address <i>*</i></span>
+                                        <input type="email"  name="player3_email">
+                                    </label>
+                                </div>`
+                            </div>
+
+                            <h6> rovide Player 4 Informations</h6>
+                            <hr>
+                            <div class="col-md-6">
+                                <div class="item">
+                                    <label>
+                                        <span>Full Name <i>*</i></span>
+                                        <input type="text" name="player4_fullName">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="item">
+                                    <label>
+                                        <span>Gaming Name <i>*</i></span>
+                                        <input type="text" name="player4_GamingName">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="item">
+                                    <label>
+                                        <span>Select Role <i>*</i></span>
+                                        <select class="basic" name="player4_Role">
+                                            <option value="SafeLane">SafeLane</option>
+                                            <option value="MidLane">MidLane</option>
+                                            <option value="OffLane">OffLane</option>
+                                            <option value="Soft Support">Soft Support</option>
+                                            <option value="Hard Support">Hard Support</option>
+                                        </select>
+                                    </label>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="item">
+                                    <label>
+                                        <span>Steam Id <i>*</i></span>
+                                        <input type="text" name="player4_SteamId">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="item">
+                                    <label>
+                                        <span>Player Id <i>*</i></span>
+                                        <input type="text" name="player4_PlayerId">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="item">
+                                    <label>
+                                        <span>Phone No# <i>*</i></span>
+                                        <input type="text" maxlength="11"
+                                               minlength="11" name="player4_phoneNo">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="item">
+                                    <label>
+                                        <span>Email Address <i>*</i></span>
+                                        <input type="email"  name="player4_email">
+                                    </label>
+                                </div>`
+                            </div>
+
+                            <h6> rovide Player 5 Informations</h6>
+                            <hr>
+                            <div class="col-md-6">
+                                <div class="item">
+                                    <label>
+                                        <span>Full Name <i>*</i></span>
+                                        <input type="text" name="player5_fullName">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="item">
+                                    <label>
+                                        <span>Gaming Name <i>*</i></span>
+                                        <input type="text" name="player5_GamingName">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="item">
+                                    <label>
+                                        <span>Select Role <i>*</i></span>
+                                        <select class="basic" name="player5_Role">
+                                            <option value="SafeLane">SafeLane</option>
+                                            <option value="MidLane">MidLane</option>
+                                            <option value="OffLane">OffLane</option>
+                                            <option value="Soft Support">Soft Support</option>
+                                            <option value="Hard Support">Hard Support</option>
+                                        </select>
+                                    </label>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="item">
+                                    <label>
+                                        <span>Steam Id <i>*</i></span>
+                                        <input type="text" name="player5_SteamId">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="item">
+                                    <label>
+                                        <span>Player Id <i>*</i></span>
+                                        <input type="text" name="player5_PlayerId">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="item">
+                                    <label>
+                                        <span>Phone No# <i>*</i></span>
+                                        <input type="text" maxlength="11"
+                                               minlength="11" name="player5_phoneNo">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="item">
+                                    <label>
+                                        <span>Email Address <i>*</i></span>
+                                        <input type="email"  name="player5_email">
+                                    </label>
+                                </div>`
+                            </div>
+
+                            <!-- Team Member Informations Ends -->
+                        </div>
+                        <hr>
+                        <button type="submit" class="btn btn-primary btn-block mt-2"><b>Confirm Registration</b></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--TEAM REGISTRATION FORM ENDS-->
+{%endblock content%}
+
+
+

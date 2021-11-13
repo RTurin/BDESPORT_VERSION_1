@@ -1,0 +1,43 @@
+{% extends "frontend/Components/base.html" %}
+
+{% load static %}
+{% block title %} BD ESPORT | Payment Status {% endblock %}
+
+{% block content %}
+<div class="club-staff-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                {%if get_payment_record.is_verified == False and get_payment_record.form_submitted == True %}
+                <div class="text-center">
+                    <div class="alert alert-info">
+                        Your Payment record has been submitted & being Reviewed. <br>
+                        Please be Paitent for us to verify your payment.
+                    </div>
+                </div>
+
+                {%elif  get_payment_record.is_verified == True and get_payment_record.tranx_success == False  and get_payment_record.form_submitted == True  %}
+                <div class="text-center">
+                    <div class="alert alert-danger">
+                        Your Payment Record has been Reviewed & <b>We found your submitted Form payment Record to be invalid.</b> <br>
+                        We will contact with you soon..!
+                    </div>
+                </div>
+                {%elif  get_payment_record.is_verified == True and get_payment_record.tranx_success == True  and get_payment_record.form_submitted == True  %}
+                <div class="text-center">
+                    <div class="alert alert-success">
+                        Your Payment Record has been Reviewed. <br>
+                        <b>Payment/Transection Successfull.</b>
+                    </div>
+                    <a href="{% url 'Tournament_Page' get_payment_record.tournament.slug %}">
+                        <button type="submit" class="btn btn-primary btn-block mt-2"><b>Visit Tournament Page</b></button>
+                    </a>
+                </div>
+                {%endif%}
+            </div>
+        </div>
+
+
+    </div>
+</div>
+{%endblock content%}

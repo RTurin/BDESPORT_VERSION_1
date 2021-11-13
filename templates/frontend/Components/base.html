@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <title>{% block title %} {% endblock %}</title>
+    
+    <link href="https://fonts.googleapis.com/css?family=Montserrat%7COpen+Sans:700,400%7CRaleway:400,800,900" rel="stylesheet" />
+    
+    <!-- Favicons -->
+    <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+
+    
+    <!-- {% static 'frontend/' %} -->
+    <link href="{% static 'frontend/css/library/bootstrap.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'frontend/dev-assets/preloader-default.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'frontend/dev-assets/demo-switcher.css' %}" rel="stylesheet" type="text/css" />
+
+    <link href="{% static 'frontend/css/soccer.css' %}" rel="stylesheet" type="text/css" />
+<!--    <link href="{% static 'frontend/css-min/soccer.min.css' %}" rel="stylesheet" type="text/css" />-->
+
+    <link rel="stylesheet" type="text/css" href="{% static 'FinalBracket_assets/jquery.bracket.min.css' %}" />
+
+
+    <!--Final Bracket Assets-->
+    <!--Final Bracket Assets Ends-->
+
+</head>
+<body>
+
+
+    <div class="preloader-wrapper" id="preloader">
+        <div class="motion-line dark-big"></div>
+        <div class="motion-line yellow-big"></div>
+        <div class="motion-line dark-small"></div>
+        <div class="motion-line yellow-normal"></div>
+        <div class="motion-line yellow-small1"></div>
+        <div class="motion-line yellow-small2"></div>
+    </div>
+    {% include "frontend/Components/navbar.html" %}
+
+
+    {% block content %}
+    {% endblock content %}
+
+    
+    {% block extra_body %}
+    {% endblock %}    
+    
+
+    {% include "frontend/Components/footer.html" %}  
+
+    {% include "frontend/Components/scripts.html" %}
+
+    {% block extra_scripts %}
+
+    {% endblock extra_scripts %}    
+</body>
+</html>    

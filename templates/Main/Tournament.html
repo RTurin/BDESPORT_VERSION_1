@@ -1,0 +1,175 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Games</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+    <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i,900"
+          rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/icofont/icofont.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/bracket.css' %}" rel="stylesheet">
+
+    <!-- =======================================================
+    * Template Name: Mamba - v2.5.1
+    * Template URL: https://bootstrapmade.com/mamba-one-page-bootstrap-template-free/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+    <style>
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+        
+        td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+        }
+        
+        tr:nth-child(even) {
+          background-color: #dddddd;
+        }
+        </style>
+</head>
+
+<body>
+    <!-- ======= Top Bar ======= -->
+<section id="topbar" class="d-none d-lg-block">
+    <div class="container clearfix">
+        <div class="contact-info float-left">
+            <i class="icofont-envelope"></i><a href="mailto:contact@example.com">contact@example.com</a>
+            <i class="icofont-phone"></i> +1 5589 55488 55
+        </div>
+        <div class="social-links float-right">
+            <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
+            <a href="#" class="facebook"><i class="icofont-facebook"></i></a>
+            <a href="#" class="instagram"><i class="icofont-instagram"></i></a>
+            <a href="#" class="skype"><i class="icofont-skype"></i></a>
+            <a href="#" class="linkedin"><i class="icofont-linkedin"></i></i></a>
+        </div>
+    </div>
+</section>
+
+<!-- ======= Header ======= -->
+<header id="header">
+    <div class="container" >
+
+        <div class="logo float-left">
+            <h1 class="text-light"><a href="index.html"><span>Games</span></a></h1>
+        </div>
+
+        <nav class="nav-menu float-right d-none d-lg-block">
+            <ul>
+                <li class="active"><a href="index.html">Home</a></li>
+                <li><a href="#about">Prize Pool</a></li>
+                <li><a href="#services">Teams</a></li>
+            </ul>
+        </nav><!-- .nav-menu -->
+
+    </div>
+</header><!-- End Header -->
+
+
+
+
+<section>
+    <div class="container">
+        <div class="section-title">
+            <h2>Prize Pool</h2>
+            <p>$400,000 USD was spread among the teams as seen below:</p>
+        </div>
+        <div class="row">
+            <div class="col-lg-5">
+                <table class="table table-bordered colored-table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Place</th>
+                        <th scope="col">USD</th>
+                        <th scope="col">Team</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><img src="{% static 'assets/img/Gold.png' %}" style="width:25px;" alt=""> 1st</td>
+                        <td>$115</td>
+                        <td><img src="{% static 'assets/img/86px-Tundra_Esports_2020_allmode.png' %}" style="width:25px;" alt="">
+                            @mdo
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><img src="{% static 'assets/img/Silver.png' %}" style="width:25px;" alt=""> 2nd</td>
+                        <td>$115</td>
+                        <td><img src="{% static 'assets/img/86px-Tundra_Esports_2020_allmode.png' %}" style="width:25px;" alt="">
+                            @fat
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+
+
+<!-- ======= Footer ======= -->
+<footer id="footer">
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-3 col-md-6 footer-info">
+                    <h3>Games</h3>
+
+                    <div class="social-links mt-3">
+                        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'assets/js/popper.min.js' %}"></script>
+
+<script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'assets/vendor/jquery-sticky/jquery.sticky.js' %}"></script>
+
+<!-- Template Main JS File -->
+<script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+
+</html>

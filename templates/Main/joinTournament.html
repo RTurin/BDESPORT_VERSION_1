@@ -1,0 +1,210 @@
+{% extends "Main/Design_Components/base.html" %}
+{% load static %}
+{% block title %} BD ESPORT | {{getTournament1}} {% endblock %}
+
+{% block content %}
+
+<main id="main">
+
+    <section>
+        <div class="container">
+            <div class="section-title">
+
+                <h2>{{getTournament1}}</h2>
+                <p>Register Your Team Information Below...!</p>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-lg-8">
+                    <form method="POST">
+                        {%  csrf_token %}
+                        <div class="section-title">
+
+                            <h4> Team Informations</h4>
+                            
+                            <hr>
+                            <h5>Provide basic Team Informations</h5>
+                        </div>
+                        {% if messages %}
+
+                        {% for message in messages %}
+                        <div class="alert alert-danger">
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+
+                        {% endif %}
+                        <div class="row">
+                          <div class="col">
+                            <label for="exampleInputEmail1">Team Name<b class="text-danger">*</b></label>  
+                            <input type="text" name="team_name" class="form-control" placeholder="eg. Team Liquid" >
+                          </div>
+                          <div class="col">
+                            <label for="exampleInputEmail1">Team ShortName<b class="text-danger">*</b></label>  
+                            <input type="text" name="team_sname" class="form-control" placeholder="eg. Liquid" >
+                          </div>                         
+                        </div>
+                        <div class="form-group mt-2">
+                            <label class="form-label" for="customFile">Team Logo (If Available)</label>
+                            <input type="file" name="logo" class="form-control" id="customFile" />
+                        </div>
+                        <br>
+                        <hr>
+                        <div class="section-title">
+                            <h4> Team Member Informations</h4>           
+                            <hr>
+                            <h5>Provide Player 1 Informations</h5>
+                        </div>                        
+                        <div class="row">
+                            <div class="col">
+                              <label for="exampleInputEmail1">Full Name<b class="text-danger">*</b></label>  
+                              <input type="text" name="player1_fullName" class="form-control" placeholder="eg. John Doe" >
+                            </div>
+                            <div class="col">
+                              <label for="exampleInputEmail1">Gaming Name<b class="text-danger">*</b></label>  
+                              <input type="text" name="player1_GamingName" class="form-control" placeholder="eg. Miracle-" >
+                            </div>                         
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label>Select Role<b class="text-danger">*</b></label>
+                            <div class="select-custom">
+                                <select class="form-control " name="player1_Role" >
+                                    <option value="Safelane">Safelane</option>
+<!--                                    <option value="Midlane">Midlane</option>-->
+<!--                                    <option value="Offlane">Offlane</option>-->
+<!--                                    <option value="Soft Support">Soft Support</option>-->
+<!--                                    <option value="Hard Support">Hard Support</option>-->
+                                </select>
+                            </div><!-- End .select-custom -->
+                        </div><!-- End .form-group -->
+                        
+
+                        <div class="section-title">
+                            <br><hr>
+                            <h5>Provide Player 2 Informations</h5>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                              <label for="exampleInputEmail1">Full Name<b class="text-danger">*</b></label>
+                              <input type="text" name="player2_fullName" class="form-control" placeholder="eg. John Doe" >
+                            </div>
+                            <div class="col">
+                              <label for="exampleInputEmail1">Gaming Name<b class="text-danger">*</b></label>
+                              <input type="text" name="player2_GamingName" class="form-control" placeholder="eg. Miracle-" >
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label>Select Role<b class="text-danger">*</b></label>
+                            <div class="select-custom">
+                                <select class="form-control " name="player2_Role" >
+<!--                                    <option value="Safelane">Safelane</option>-->
+                                    <option value="Midlane">Midlane</option>
+<!--                                    <option value="Offlane">Offlane</option>-->
+<!--                                    <option value="Soft Support">Soft Support</option>-->
+<!--                                    <option value="Hard Support">Hard Support</option>-->
+                                </select>
+                            </div><!-- End .select-custom -->
+                        </div><!-- End .form-group -->
+
+
+                        <div class="section-title">
+                            <br><hr>
+                            <h5>Provide Player 3 Informations</h5>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                              <label for="exampleInputEmail1">Full Name<b class="text-danger">*</b></label>
+                              <input type="text" name="player3_fullName" class="form-control" placeholder="eg. John Doe" >
+                            </div>
+                            <div class="col">
+                              <label for="exampleInputEmail1">Gaming Name<b class="text-danger">*</b></label>
+                              <input type="text" name="player3_GamingName" class="form-control" placeholder="eg. Miracle-" >
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label>Select Role<b class="text-danger">*</b></label>
+                            <div class="select-custom">
+                                <select class="form-control " name="player3_Role" >
+<!--                                    <option value="Safelane">Safelane</option>-->
+<!--                                    <option value="Midlane">Midlane</option>-->
+                                    <option value="Offlane">Offlane</option>
+<!--                                    <option value="Soft Support">Soft Support</option>-->
+<!--                                    <option value="Hard Support">Hard Support</option>-->
+                                </select>
+                            </div><!-- End .select-custom -->
+                        </div><!-- End .form-group -->
+
+
+                        <div class="section-title">
+                            <br><hr>
+                            <h5>Provide Player 4 Informations</h5>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                              <label for="exampleInputEmail1">Full Name<b class="text-danger">*</b></label>
+                              <input type="text" name="player4_fullName" class="form-control" placeholder="eg. John Doe" >
+                            </div>
+                            <div class="col">
+                              <label for="exampleInputEmail1">Gaming Name<b class="text-danger">*</b></label>
+                              <input type="text" name="player4_GamingName" class="form-control" placeholder="eg. Miracle-" >
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label>Select Role<b class="text-danger">*</b></label>
+                            <div class="select-custom">
+                                <select class="form-control " name="player4_Role" >
+<!--                                    <option value="Safelane">Safelane</option>-->
+<!--                                    <option value="Midlane">Midlane</option>-->
+<!--                                    <option value="Offlane">Offlane</option>-->
+                                    <option value="Soft Support">Soft Support</option>
+<!--                                    <option value="Hard Support">Hard Support</option>-->
+                                </select>
+                            </div><!-- End .select-custom -->
+                        </div><!-- End .form-group -->
+
+
+                        <div class="section-title">
+                            <br><hr>
+                            <h5>Provide Player 5 Informations</h5>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                              <label for="exampleInputEmail1">Full Name<b class="text-danger">*</b></label>
+                              <input type="text" name="player5_fullName" class="form-control" placeholder="eg. John Doe" >
+                            </div>
+                            <div class="col">
+                              <label for="exampleInputEmail1">Gaming Name<b class="text-danger">*</b></label>
+                              <input type="text" name="player5_GamingName" class="form-control" placeholder="eg. Miracle-" >
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label>Select Role<b class="text-danger">*</b></label>
+                            <div class="select-custom">
+                                <select class="form-control " name="player5_Role" >
+<!--                                    <option value="Safelane">Safelane</option>-->
+<!--                                    <option value="Midlane">Midlane</option>-->
+<!--                                    <option value="Offlane">Offlane</option>-->
+<!--                                    <option value="Soft Support">Soft Support</option>-->
+                                    <option value="Hard Support">Hard Support</option>
+                                </select>
+                            </div><!-- End .select-custom -->
+                        </div>
+                        <br><hr>
+                        <button type="submit" class="btn btn-primary btn-block mt-2">Register Team</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+</main><!-- End #main -->
+
+{% endblock content %}

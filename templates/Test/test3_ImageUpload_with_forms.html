@@ -1,0 +1,21 @@
+{% extends "frontend/Components/base.html" %}
+
+{% load static %}
+{% block title %} BD ESPORT | tes2- ImageUpload Attempt 2 {% endblock %}
+
+{% block content %}
+<section class="checkout-wrap">
+    <div class="container">
+        <div class="row">
+            <h4>Test 3 - Image Upload Via Forms.py</h4>
+            <div class="customer-info">
+                <form action=""  method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <button class="btn btn-info">Submit Data</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{%endblock content%}

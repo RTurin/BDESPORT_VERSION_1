@@ -1,0 +1,65 @@
+{% extends "Main/Design_Components/base.html" %}
+{% load static %}
+{% block title %} BD ESPORT {% endblock %}
+
+{% block content %}
+
+<main id="main">
+
+    <section>
+        <div class="container">
+            <div class="section-title">
+                <h2>Tournaments</h2>
+                <p>Join Tournaments</p>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-lg-12">
+                    <table class="table table-bordered colored-table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Tournament Name</th>
+                            <th scope="col">PrizePool</th>
+                            <th scope="col">Start Date</th>
+                            <th scope="col">End Date</th>
+                            <th scope="col">Reg DeadLine</th>
+                            <th scope="col">Join Tournament</th>
+                            <th scope="col">Overview</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for data in getTournament %}
+                        <tr>
+                           <td>{{data.title}}</td>
+                           <td>$ {{data.prizepool}} USD</td>
+                           <td>{{data.startDate}}</td>
+                           <td>{{data.endDate}}</td>
+                           <td>{{data.registrationDeadline}}</td>
+                           <td class="text-center">
+                               <a href = "{% url 'Join_Tournament' data.slug %}">
+                                    <button type="button" class="btn btn-success ">
+                                        Register Here
+                                    </button>
+                               </a>
+                            </td>
+                            <td class="text-center">
+                                <a href = "{% url 'Tournament_Page' data.slug %}">
+                                    <button type="button" class="btn btn-success ">
+                                        Overview
+                                    </button>
+                                </a>
+                            </td>
+                        </tr>
+                        {%endfor%}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+</main><!-- End #main -->
+
+{% endblock content %}

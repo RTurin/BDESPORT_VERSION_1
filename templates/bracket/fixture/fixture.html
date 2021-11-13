@@ -1,0 +1,133 @@
+{%extends 'bracket/layout.html' %}
+
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <div class="header-content">
+        <div class="header-content-inner">
+            <h1 id="homeHeading">{{fixture.name}}</h1>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div id="exTab2" class="container">
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="#1" data-toggle="tab">Fixture</a>
+        </li>
+        <li>
+            <a href="#2" data-toggle="tab">Matches</a>
+        </li>
+        <li>
+            <a href="#3" data-toggle="tab">Players</a>
+        </li>
+    </ul>
+
+    <div class="tab-content ">
+        <div class="tab-pane active" id="1">
+            <div id="fixture" class="fixture">
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="tab-pane" id="2">
+            <div class="row inner-bg col-md-8 col-md-offset-2">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Match No</th>
+                            <th>Match</th>
+                            <th>Round</th>
+                            <th>Scheduled Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if not fixture.match_list %}
+                        <tr>
+                            <td colspan="2">No matches scheduled</td>
+                        </tr>
+                        {% endif %} {% for match in fixture.match_list %}
+                        <tr>
+                            <td>{{match.match_number}}</td>
+                            <td>{{match.description}}</td>
+                            <td>{{match.match_round}}</td>
+                            <td>{{match.date|date}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="tab-pane" id="3">
+            <div class="row inner-bg col-md-8 col-md-offset-2">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Player</th>
+                            <th>Rank</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if not fixture.player_list %}
+                        <tr>
+                            <td colspan="2">No matches scheduled</td>
+                        </tr>
+                        {% endif %} {% for player in fixture.player_list %}
+                        <tr>
+                            <td>{{player.team.name}}</td>
+                            <td>{{player.rank}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="/static/bracket/css/jquery.brackets.min.css">
+<link rel="stylesheet" href="/static/bracket/css/pages/fixture.css">
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/bracket/js/jquery.brackets.min.js"></script>
+
+
+<script>
+
+    var fixtureData = {
+      "teams": JSON.parse('{{teams|safe}}'),
+     "results": JSON.parse('{{results|safe}}')
+
+// Single Elimination
+   //   "teams":[["Team 1","Team 2"],["Team 3","Team 4"],["Team 5","Team 6"],["Team 7","Team 8"]],
+  //    "results":[[[[2,0],[null,null],[null,null],[null,null]],[[null,null],[1,4]],[[null,null],[null,null]]]]
+    };
+
+    $(function () {
+        $('#fixture').bracket({
+            teamWidth: 150,
+            scoreWidth: 30,
+            matchMargin: 100,
+            roundMargin: 100,
+            skipConsolationRound: true,
+            init: fixtureData,
+            centerConnectors: true
+        });
+    })
+</script>
+{% endblock %}
+
+
+{% block breadcrumbs %}
+<ol class="breadcrumb">
+    <li>
+        <a href="/">Home</a>
+    </li>
+    <li class="active">Fixture - {{fixture.name}}</li>
+</ol>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "frontend/Components/base.html" %}
+
+{% load static %}
+{% block title %} BD ESPORT | tes2- ImageUpload Attempt 1 {% endblock %}
+
+{% block content %}
+<section class="checkout-wrap">
+    <div class="container">
+        <div class="row">
+            <div class="customer-info">
+                <form  method="POST">
+                    {%  csrf_token %}
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-info">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+
+                    <div class="col-md-12">
+                        <div class="item">
+                            <label>
+                                <span>Team Logo (If Available)<i> *</i> </span>
+                                <input type="file" name="logo" class="form-control">
+                            </label>
+                        </div>
+                        <hr>
+                    </div>
+
+                    <hr>
+                    <button type="submit" class="btn btn-primary btn-block mt-4"><b>Upload Image</b></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{%endblock content%}

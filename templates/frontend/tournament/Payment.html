@@ -1,0 +1,50 @@
+{% extends "frontend/Components/base.html" %}
+
+{% load static %}
+{% block title %} BD ESPORT | Payment Instruction {% endblock %}
+
+{% block content %}
+
+<div class="club-staff-top">
+    <div class="container">
+        <div class="text-center">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <div class="row">
+            <div class="col-md-7">
+                {{get_tournament.payment_Info|safe}}
+            </div>
+            <div class="col-md-5">
+                <h6 >Sumbit Payment Details</h6>
+                <form  method="POST" enctype="multipart/form-data">
+                    {%  csrf_token %}
+
+
+                    <div class="cart-total">
+                        <div class="delivery-list">
+                            <label class="item">
+                                <span>Your Mobile No# used in Payment<i class="text-danger"> *</i></span>
+                                <input type="text" name="phoneNo" maxlength="11" required>
+                            </label>
+
+                            <label class="item">
+                                <span>Transection ID<i class="text-danger"> *</i></span>
+                                <input type="text" name="tranxid" required>
+                            </label>
+
+                            <button class="proceed">Sumbit<i class="fa fa-check" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{%endblock content%}

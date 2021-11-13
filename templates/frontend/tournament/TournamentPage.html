@@ -1,0 +1,410 @@
+{% extends "frontend/Components/base.html" %}
+
+{% load static %}
+{% block title %} BD ESPORT | {{getTournament}} {% endblock %}
+
+{% block extra_styles %}
+
+{% endblock extra_styles%}
+{% block content %}
+
+
+<!--BREADCRUMBS BEGIN-->
+
+<!--<section class="image-header" style="background-image: url('{% static 'frontend/images/soccer/page-header-bg_Dota2_.jpg' %}');min-height:300px;">-->
+<!--    <div class="container">-->
+<!--        <div class="row">-->
+<!--            <div class="col-md-6">-->
+<!--                <div class="info">-->
+<!--                    <div class="wrap">-->
+<!--                        <ul class="breadcrumbs">-->
+<!--                            <li><a href="{{prev_url}}">Back</a>/</li>-->
+<!--                            <li>Category</li>-->
+<!--                        </ul>-->
+<!--                        <h5>{{getTournament}}</h5>-->
+<!--&lt;!&ndash;                        <p>{% now "jS F Y" %}</p>&ndash;&gt;-->
+
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
+
+<!--BREADCRUMBS END-->
+
+
+<!--ESPORT CHAMPIONSHIP PARTICIPANTS END-->
+
+<section class="main-match-shedule amateurs-match-shedule">
+    <div class="container">
+        <!--ESPORT CHAMPIONSHIP PARTICIPANTS BEGIN-->
+        <div class="row no-guters esport_championship_participants">
+            <div class="col-md-12 ">
+                <h5 >Tournament Participates</h5>
+                <hr>
+            </div>
+            {% for g in getTournament.tournamentparticipate_set.all %}
+            <div class="col-md-3 col-sm-6 col-xs-6">
+                <a href="{% url 'Team_View' g.team.slug %}">
+                    <img src="{% static 'frontend/' %}images/common/esport-participants-background.jpg" class="background-team" alt="background">
+                    <img src="{{g.team.logo.url}}" alt="team-logo">
+                    <span>{{g.team.name}}
+                    {% if g.is_verified == True  %}
+                            <img style="width:20px; height:20px;"
+                                 src="{% static 'frontend/images/icons/v_yes.png'%}">
+                        {%else%}
+                            <img style="width:20px; height:20px;"
+                                 src="{% static 'frontend/images/icons/v_no.png'%}">
+                        {% endif %}
+                        </span>
+                </a>
+            </div>
+            {%endfor%}
+        </div>
+        <!--ESPORT CHAMPIONSHIP PARTICIPANTS END-->
+
+
+        <div class="row">
+            <hr>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <h5 >Group Stage</h5>
+                <hr>
+                {% if not get_GroupStage_data1 == 'None' %}
+                <div class="col-md-6  overflow-scroll standings-table">
+                    <p >Group 1</p>
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active"  role="tabpanel">
+                            <table class="standing-full">
+                                <tr>
+                                    <th>Teams</th>
+                                    <th>played</th>
+                                    <th>won</th>
+                                    <th>lost</th>
+                                    <th>points</th>
+                                    <th>Qualified</th>
+                                </tr>
+                                {% for g in get_GroupStage_data1%}
+                                <tr>
+                                    <td class="up">
+                                        {{forloop.counter}}
+                                        <span class="team">
+                                                <img src="{{g.team.team.logo.url}}"
+                                                     width="30" height="30" alt="team-logo">
+                                            </span> {{g.team.team.name}}
+                                    </td>
+                                    <td>{{g.played}}</td>
+                                    <td>{{g.win}}</td>
+
+                                    <td>{{g.loss}}</td>
+
+                                    <td class="points"><span>{{g.points}}</span></td>
+                                    {% if g.qualified_status == True%}
+                                    <td>Q</td>
+                                    {%else%}
+                                    <td>-</td>
+                                    {% endif%}
+                                </tr>
+                                {%endfor%}
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                {%endif%}
+
+                {% if not get_GroupStage_data2 == 'None' %}
+                <div class="col-md-6 overflow-scroll standings-table">
+                    <p >Group 2</p>
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active"  role="tabpanel">
+                            <table class="standing-full">
+                                <tr>
+                                    <th>Teams</th>
+                                    <th>played</th>
+                                    <th>won</th>
+                                    <th>lost</th>
+                                    <th>points</th>
+                                    <th>Qualified</th>
+                                </tr>
+                                {% for g in get_GroupStage_data2%}
+                                <tr>
+                                    <td class="up">
+                                        {{forloop.counter}}
+                                        <span class="team">
+                                                <img src="{{g.team.team.logo.url}}"
+                                                     width="30" height="30" alt="team-logo">
+                                            </span> {{g.team.team.name}}
+                                    </td>
+                                    <td>{{g.played}}</td>
+                                    <td>{{g.win}}</td>
+
+                                    <td>{{g.loss}}</td>
+
+                                    <td class="points"><span>{{g.points}}</span></td>
+                                    {% if g.qualified_status == True%}
+                                    <td>Q</td>
+                                    {%else%}
+                                    <td>-</td>
+                                    {% endif%}
+                                </tr>
+                                {%endfor%}
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                {%endif%}
+
+                {% if not get_GroupStage_data3 == 'None' %}
+                <div class="col-md-6 overflow-scroll standings-table">
+                    <hr>
+                    <p >Group 3</p>
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active"  role="tabpanel">
+                            <table class="standing-full">
+                                <tr>
+                                    <th>Teams</th>
+                                    <th>played</th>
+                                    <th>won</th>
+                                    <th>lost</th>
+                                    <th>points</th>
+                                </tr>
+                                {% for g in get_GroupStage_data3%}
+                                <tr>
+                                    <td class="up">
+                                        {{forloop.counter}}
+                                        <span class="team">
+                                                <img src="{{g.team.logo.url}}"
+                                                     width="30" height="30" alt="team-logo">
+                                            </span> {{g.team.name}}
+                                    </td>
+                                    <td>{{g.played}}</td>
+                                    <td>{{g.win}}</td>
+
+                                    <td>{{g.loss}}</td>
+
+                                    <td class="points"><span>{{g.points}}</span></td>
+                                </tr>
+                                {%endfor%}
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                {%endif%}
+
+                {% if not get_GroupStage_data4 == 'None' %}
+                <div class="col-md-6 overflow-scroll standings-table">
+                    <hr>
+                    <p >Group 4</p>
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active"  role="tabpanel">
+                            <table class="standing-full">
+                                <tr>
+                                    <th>Teams</th>
+                                    <th>played</th>
+                                    <th>won</th>
+                                    <th>lost</th>
+                                    <th>points</th>
+                                </tr>
+                                {% for g in get_GroupStage_data4%}
+                                <tr>
+                                    <td class="up">
+                                        {{forloop.counter}}
+                                        <span class="team">
+                                                <img src="{{g.team.logo.url}}"
+                                                     width="30" height="30" alt="team-logo">
+                                            </span> {{g.team.name}}
+                                    </td>
+                                    <td>{{g.played}}</td>
+                                    <td>{{g.win}}</td>
+
+                                    <td>{{g.loss}}</td>
+
+                                    <td class="points"><span>{{g.points}}</span></td>
+                                </tr>
+                                {%endfor%}
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                {%endif%}
+            </div>
+        </div>
+        <div class="row">
+            <hr>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <h6>Group Stage Matches</h6>
+                <hr>
+            </div>
+            <div class="col-md-4 col-sm-12 col-xs-12">
+                <p class="text-center"> Day 1</p>
+                <div class="main-lates-matches">
+                    {% for m in getAll_groupStage_matches1 %}
+                    <a href="#" class="item">
+                        <span class="championship">{{m.group}} - Match-{{m.match_number}} </span>
+                        <span class="teams-wrap">
+                            <span class="team">
+                                <span>
+                                    <img src="{{m.team_1.team.logo.url}}" height="25" alt="team-image">
+                                </span>
+                                <span><b>{{m.team_1.team.shortname}}</b> </span>
+                                </span>
+                            <span class="score">
+                                if
+                                <span>{{m.team_1_score}}:{{m.team_2_score}}</span>
+                            </span>
+                            <span class="team1">
+                                <span> <b>{{m.team_2.team.shortname}}</b> </span>
+                                <span><img src="{{m.team_2.team.logo.url}}" alt="team-image"></span>
+                            </span>
+                        </span>
+                        <span class="game-result">{{m.time}} - {{m.date}}  </span>
+                    </a>
+                    {%endfor%}
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12 col-xs-12">
+                <p class="text-center"> Day 2</p>
+                <div class="main-lates-matches">
+                    {% for m in getAll_groupStage_matches2 %}
+                    <a href="#" class="item">
+                        <span class="championship">{{m.group}} - Match-{{m.match_number}} </span>
+                        <span class="teams-wrap">
+                            <span class="team">
+                                <span>
+                                    <img src="{{m.team_1.team.logo.url}}" height="25" alt="team-image">
+                                </span>
+                                <span><b>{{m.team_1.team.shortname}}</b> </span>
+                                </span>
+                            <span class="score">
+                                if
+                                <span>{{m.team_1_score}}:{{m.team_2_score}}</span>
+                            </span>
+                            <span class="team1">
+                                <span> <b>{{m.team_2.team.shortname}}</b> </span>
+                                <span><img src="{{m.team_2.team.logo.url}}" alt="team-image"></span>
+                            </span>
+                        </span>
+                        <span class="game-result">{{m.time}} - {{m.date}}  </span>
+                    </a>
+                    {%endfor%}
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12 col-xs-12">
+                <p class="text-center"> Day 3</p>
+                <div class="main-lates-matches">
+                    {% for m in getAll_groupStage_matches3 %}
+                    <a href="#" class="item">
+                        <span class="championship">{{m.group}} - Match-{{m.match_number}} </span>
+                        <span class="teams-wrap">
+                            <span class="team">
+                                <span>
+                                    <img src="{{m.team_1.team.logo.url}}" height="25" alt="team-image">
+                                </span>
+                                <span><b>{{m.team_1.team.shortname}}</b> </span>
+                                </span>
+                            <span class="score">
+                                if
+                                <span>{{m.team_1_score}}:{{m.team_2_score}}</span>
+                            </span>
+                            <span class="team1">
+                                <span> <b>{{m.team_2.team.shortname}}</b> </span>
+                                <span><img src="{{m.team_2.team.logo.url}}" alt="team-image"></span>
+                            </span>
+                        </span>
+                        <span class="game-result">{{m.time}} - {{m.date}}  </span>
+                    </a>
+                    {%endfor%}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <hr>
+            <div class="col-md-12 overflow-scroll">
+                <h5 >Play Offs Eliminations</h5>
+                <hr>
+                <div id="fixture1" class="fixture overflow-scroll ">
+                </div>
+                <hr>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!--STANDING CUP BEGIN-->
+<!--
+<section class="">
+    <div class="container ">
+        <div class="row">
+
+            <div class="col-md-12 overflow-scroll">
+                <h5 >Play Offs Eliminations</h5>
+                <hr>
+                <div id="fixture" class="fixture overflow-scroll ">
+                </div>
+                <hr>
+            </div>
+        </div>
+    </div>
+</section>
+-->
+<!--STANDING CUP END-->
+
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+        {% if teams == "[]" %}
+            var fixtureData = {
+                teams: [
+                    ["TBD", "TBD"],
+                    ["TBD", "TBD"],
+                    ["TBD", "TBD"],
+                    ["TBD", "TBD"],
+                ],
+                results: []
+            };
+            $(function () {
+                $('#fixture').bracket({
+                    teamWidth: 150,
+                    scoreWidth: 30,
+                    matchMargin: 50,
+                    roundMargin: 100,
+                    skipConsolationRound: true,
+                    init: fixtureData,
+                    centerConnectors: false
+                });
+            });
+        {%else%}
+            var fixtureData = {
+              "teams": JSON.parse('{{teams|safe}}'),
+              "results": JSON.parse('{{results|safe}}')
+            };
+            $(function () {
+                $('#fixture').bracket({
+                    teamWidth: 150,
+                    scoreWidth: 30,
+                    matchMargin: 50,
+                    roundMargin: 100,
+                    skipConsolationRound: true,
+                    init: fixtureData,
+                    centerConnectors: false
+                });
+            });
+            $(function () {
+                $('#fixture1').bracket({
+                    teamWidth: 150,
+                    scoreWidth: 30,
+                    matchMargin: 50,
+                    roundMargin: 100,
+                    skipConsolationRound: true,
+                    init: fixtureData,
+                    centerConnectors: false
+                });
+            });
+        {%endif%}
+</script>
+<script type="text/javascript" src="{% static 'FinalBracket_assets/jquery-1.6.2.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'FinalBracket_assets/jquery.bracket.min.js' %}"></script>
+{% endblock extra_scripts %}
