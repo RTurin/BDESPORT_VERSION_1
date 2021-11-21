@@ -167,6 +167,7 @@ class GroupStage_Points_Table_InLine(admin.TabularInline):
     ordering = ['id']
     fields = ('team','played','win','loss','points','matches','qualified_status')
 
+
 class GroupStageAdmin(admin.ModelAdmin):
     inlines = [
         GroupStage_Points_Table_InLine

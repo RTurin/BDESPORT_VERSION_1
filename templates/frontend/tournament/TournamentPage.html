@@ -38,6 +38,7 @@
 
 <section class="main-match-shedule amateurs-match-shedule">
     <div class="container">
+
         <!--ESPORT CHAMPIONSHIP PARTICIPANTS BEGIN-->
         <div class="row no-guters esport_championship_participants">
             <div class="col-md-12 ">
@@ -62,13 +63,13 @@
             </div>
             {%endfor%}
         </div>
-        <!--ESPORT CHAMPIONSHIP PARTICIPANTS END-->
+        <!--ESPORT CHAMPIONSHIP PARTICIPANTS ENDS-->
 
-
+        <!--Group Stage Points Table Begins-->
         <div class="row">
             <hr>
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <h5 >Group Stage</h5>
+                <h5 >Group Stage Points Table</h5>
                 <hr>
                 {% if not get_GroupStage_data1 == 'None' %}
                 <div class="col-md-6  overflow-scroll standings-table">
@@ -229,6 +230,9 @@
                 {%endif%}
             </div>
         </div>
+        <!--Group Stage Points Table ENDS-->
+
+        <!--Group Stage Matches Begins-->
         <div class="row">
             <hr>
             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -238,117 +242,401 @@
             <div class="col-md-4 col-sm-12 col-xs-12">
                 <p class="text-center"> Day 1</p>
                 <div class="main-lates-matches">
-                    {% for m in getAll_groupStage_matches1 %}
+                    {%if getAll_groupStage_matches1 == "None" %}
+                    <a href="" class="item">
+                        <span class="championship">{{getTournament}}</span>
+                        <span class="teams-wrap">
+                            <span class="team">
+                                <span>
+                                    <img src="{% static 'frontend/images/common/default.png' %}" height="25" alt="team-image">
+                                </span>
+                                <span><b>TBD</b> </span>
+                                </span>
+                            <span class="score">
+                                if
+                                <span>:</span>
+                            </span>
+                            <span class="team1">
+                                <span> <b>TBD</b> </span>
+                                <span><img src="{% static 'frontend/images/common/default.png' %}" alt="team-image"></span>
+                            </span>
+                        </span>
+                        <span class="game-result">Date/Time-TBD</span>
+                    </a>
+
                     <a href="#" class="item">
+                        <span class="championship">{{getTournament}}</span>
+                        <span class="teams-wrap">
+                            <span class="team">
+                                <span>
+                                    <img src="{% static 'frontend/images/common/default.png' %}" height="25" alt="team-image">
+                                </span>
+                                <span><b>TBD</b> </span>
+                                </span>
+                            <span class="score">
+                                if
+                                <span>:</span>
+                            </span>
+                            <span class="team1">
+                                <span> <b>TBD</b> </span>
+                                <span><img src="{% static 'frontend/images/common/default.png' %}" alt="team-image"></span>
+                            </span>
+                        </span>
+                        <span class="game-result">Date/Time-TBD</span>
+                    </a>
+                    <a href="#" class="item">
+                        <span class="championship">{{getTournament}}</span>
+                        <span class="teams-wrap">
+                            <span class="team">
+                                <span>
+                                    <img src="{% static 'frontend/images/common/default.png' %}" height="25" alt="team-image">
+                                </span>
+                                <span><b>TBD</b> </span>
+                                </span>
+                            <span class="score">
+                                if
+                                <span>:</span>
+                            </span>
+                            <span class="team1">
+                                <span> <b>TBD</b> </span>
+                                <span><img src="{% static 'frontend/images/common/default.png' %}" alt="team-image"></span>
+                            </span>
+                        </span>
+                        <span class="game-result">Date/Time-TBD</span>
+                    </a>
+                    <a href="#" class="item">
+                        <span class="championship">{{getTournament}}</span>
+                        <span class="teams-wrap">
+                            <span class="team">
+                                <span>
+                                    <img src="{% static 'frontend/images/common/default.png' %}" height="25" alt="team-image">
+                                </span>
+                                <span><b>TBD</b> </span>
+                                </span>
+                            <span class="score">
+                                if
+                                <span>:</span>
+                            </span>
+                            <span class="team1">
+                                <span> <b>TBD</b> </span>
+                                <span><img src="{% static 'frontend/images/common/default.png' %}" alt="team-image"></span>
+                            </span>
+                        </span>
+                        <span class="game-result">Date/Time-TBD</span>
+                    </a>
+                    {%else%}
+                    {% for m in getAll_groupStage_matches1 %}
+                    <a href="https://stratz.com/matches/6156080212" target="blank" class="item">
                         <span class="championship">{{m.group}} - Match-{{m.match_number}} </span>
                         <span class="teams-wrap">
                             <span class="team">
                                 <span>
-                                    <img src="{{m.team_1.team.logo.url}}" height="25" alt="team-image">
+                                    <img src="{{m.team_1.team.logo.url}}" height="25" alt="{{m.team_1.team.name}}">
                                 </span>
                                 <span><b>{{m.team_1.team.shortname}}</b> </span>
                                 </span>
                             <span class="score">
-                                if
+                                {% if  m.winner == NONE %}
+                                <span> - : - </span>
+                                 {%else%}
+                                    {%if  m.winner == m.team_1  %}
+                                    <span> W : L </span>
+                                    {%else%}
+                                    <span> L : W </span>
+                                    {%endif%}
+                                {%endif%}
+                                {%comment%}
                                 <span>{{m.team_1_score}}:{{m.team_2_score}}</span>
+                                {%endcomment%}
                             </span>
                             <span class="team1">
                                 <span> <b>{{m.team_2.team.shortname}}</b> </span>
                                 <span><img src="{{m.team_2.team.logo.url}}" alt="team-image"></span>
                             </span>
                         </span>
-                        <span class="game-result">{{m.time}} - {{m.date}}  </span>
+                        <span class="game-result">{{m.time}} - {{m.date}}</span>
                     </a>
                     {%endfor%}
+                    {%endif%}
+
+
                 </div>
             </div>
             <div class="col-md-4 col-sm-12 col-xs-12">
                 <p class="text-center"> Day 2</p>
                 <div class="main-lates-matches">
+                    {%if getAll_groupStage_matches2 == "None" %}
+                    <a href="#" class="item">
+                        <span class="championship">{{getTournament}}</span>
+                        <span class="teams-wrap">
+                            <span class="team">
+                                <span>
+                                    <img src="{% static 'frontend/images/common/default.png' %}" height="25" alt="team-image">
+                                </span>
+                                <span><b>TBD</b> </span>
+                                </span>
+                            <span class="score">
+                                if
+                                <span>:</span>
+                            </span>
+                            <span class="team1">
+                                <span> <b>TBD</b> </span>
+                                <span><img src="{% static 'frontend/images/common/default.png' %}" alt="team-image"></span>
+                            </span>
+                        </span>
+                        <span class="game-result">Date/Time-TBD</span>
+                    </a>
+
+                    <a href="#" class="item">
+                        <span class="championship">{{getTournament}}</span>
+                        <span class="teams-wrap">
+                            <span class="team">
+                                <span>
+                                    <img src="{% static 'frontend/images/common/default.png' %}" height="25" alt="team-image">
+                                </span>
+                                <span><b>TBD</b> </span>
+                                </span>
+                            <span class="score">
+                                if
+                                <span>:</span>
+                            </span>
+                            <span class="team1">
+                                <span> <b>TBD</b> </span>
+                                <span><img src="{% static 'frontend/images/common/default.png' %}" alt="team-image"></span>
+                            </span>
+                        </span>
+                        <span class="game-result">Date/Time-TBD</span>
+                    </a>
+                    <a href="#" class="item">
+                        <span class="championship">{{getTournament}}</span>
+                        <span class="teams-wrap">
+                            <span class="team">
+                                <span>
+                                    <img src="{% static 'frontend/images/common/default.png' %}" height="25" alt="team-image">
+                                </span>
+                                <span><b>TBD</b> </span>
+                                </span>
+                            <span class="score">
+                                if
+                                <span>:</span>
+                            </span>
+                            <span class="team1">
+                                <span> <b>TBD</b> </span>
+                                <span><img src="{% static 'frontend/images/common/default.png' %}" alt="team-image"></span>
+                            </span>
+                        </span>
+                        <span class="game-result">Date/Time-TBD</span>
+                    </a>
+                    <a href="#" class="item">
+                        <span class="championship">{{getTournament}}</span>
+                        <span class="teams-wrap">
+                            <span class="team">
+                                <span>
+                                    <img src="{% static 'frontend/images/common/default.png' %}" height="25" alt="team-image">
+                                </span>
+                                <span><b>TBD</b> </span>
+                                </span>
+                            <span class="score">
+                                if
+                                <span>:</span>
+                            </span>
+                            <span class="team1">
+                                <span> <b>TBD</b> </span>
+                                <span><img src="{% static 'frontend/images/common/default.png' %}" alt="team-image"></span>
+                            </span>
+                        </span>
+                        <span class="game-result">Date/Time-TBD</span>
+                    </a>
+
+                    {%else%}
                     {% for m in getAll_groupStage_matches2 %}
                     <a href="#" class="item">
                         <span class="championship">{{m.group}} - Match-{{m.match_number}} </span>
                         <span class="teams-wrap">
                             <span class="team">
                                 <span>
-                                    <img src="{{m.team_1.team.logo.url}}" height="25" alt="team-image">
+                                    <img src="{{m.team_1.team.logo.url}}" height="25" alt="{{m.team_1.team.name}}">
                                 </span>
                                 <span><b>{{m.team_1.team.shortname}}</b> </span>
                                 </span>
                             <span class="score">
-                                if
+                                {% if  m.winner == NONE %}
+                                <span> - : - </span>
+                                 {%else%}
+                                    {%if  m.winner == m.team_1  %}
+                                    <span> W : L </span>
+                                    {%else%}
+                                    <span> L : W </span>
+                                    {%endif%}
+                                {%endif%}
+                                {%comment%}
                                 <span>{{m.team_1_score}}:{{m.team_2_score}}</span>
+                                {%endcomment%}
                             </span>
                             <span class="team1">
                                 <span> <b>{{m.team_2.team.shortname}}</b> </span>
                                 <span><img src="{{m.team_2.team.logo.url}}" alt="team-image"></span>
                             </span>
                         </span>
-                        <span class="game-result">{{m.time}} - {{m.date}}  </span>
+                        <span class="game-result">{{m.time}} - {{m.date}}</span>
                     </a>
                     {%endfor%}
+                    {%endif%}
+
                 </div>
             </div>
             <div class="col-md-4 col-sm-12 col-xs-12">
                 <p class="text-center"> Day 3</p>
                 <div class="main-lates-matches">
+                    {%if getAll_groupStage_matches3 == "None" %}
+                    <a href="#" class="item">
+                        <span class="championship">{{getTournament}}</span>
+                        <span class="teams-wrap">
+                            <span class="team">
+                                <span>
+                                    <img src="{% static 'frontend/images/common/default.png' %}" height="25" alt="team-image">
+                                </span>
+                                <span><b>TBD</b> </span>
+                                </span>
+                            <span class="score">
+                                if
+                                <span>:</span>
+                            </span>
+                            <span class="team1">
+                                <span> <b>TBD</b> </span>
+                                <span><img src="{% static 'frontend/images/common/default.png' %}" alt="team-image"></span>
+                            </span>
+                        </span>
+                        <span class="game-result">Date/Time-TBD</span>
+                    </a>
+
+                    <a href="#" class="item">
+                        <span class="championship">{{getTournament}}</span>
+                        <span class="teams-wrap">
+                            <span class="team">
+                                <span>
+                                    <img src="{% static 'frontend/images/common/default.png' %}" height="25" alt="team-image">
+                                </span>
+                                <span><b>TBD</b> </span>
+                                </span>
+                            <span class="score">
+                                if
+                                <span>:</span>
+                            </span>
+                            <span class="team1">
+                                <span> <b>TBD</b> </span>
+                                <span><img src="{% static 'frontend/images/common/default.png' %}" alt="team-image"></span>
+                            </span>
+                        </span>
+                        <span class="game-result">Date/Time-TBD</span>
+                    </a>
+                    <a href="#" class="item">
+                        <span class="championship">{{getTournament}}</span>
+                        <span class="teams-wrap">
+                            <span class="team">
+                                <span>
+                                    <img src="{% static 'frontend/images/common/default.png' %}" height="25" alt="team-image">
+                                </span>
+                                <span><b>TBD</b> </span>
+                                </span>
+                            <span class="score">
+                                if
+                                <span>:</span>
+                            </span>
+                            <span class="team1">
+                                <span> <b>TBD</b> </span>
+                                <span><img src="{% static 'frontend/images/common/default.png' %}" alt="team-image"></span>
+                            </span>
+                        </span>
+                        <span class="game-result">Date/Time-TBD</span>
+                    </a>
+                    <a href="#" class="item">
+                        <span class="championship">{{m.group}} - Match-{{m.match_number}} </span>
+                        <span class="teams-wrap">
+                            <span class="team">
+                                <span>
+                                    <img src="{{m.team_1.team.logo.url}}" height="25" alt="{{m.team_1.team.name}}">
+                                </span>
+                                <span><b>{{m.team_1.team.shortname}}</b> </span>
+                                </span>
+                            <span class="score">
+                                {% if  m.winner == NONE %}
+                                <span> - : - </span>
+                                 {%else%}
+                                    {%if  m.winner == m.team_1  %}
+                                    <span> W : L </span>
+                                    {%else%}
+                                    <span> L : W </span>
+                                    {%endif%}
+                                {%endif%}
+                                {%comment%}
+                                <span>{{m.team_1_score}}:{{m.team_2_score}}</span>
+                                {%endcomment%}
+                            </span>
+                            <span class="team1">
+                                <span> <b>{{m.team_2.team.shortname}}</b> </span>
+                                <span><img src="{{m.team_2.team.logo.url}}" alt="team-image"></span>
+                            </span>
+                        </span>
+                        <span class="game-result">{{m.time}} - {{m.date}}</span>
+                    </a>
+                    {%else%}
                     {% for m in getAll_groupStage_matches3 %}
                     <a href="#" class="item">
                         <span class="championship">{{m.group}} - Match-{{m.match_number}} </span>
                         <span class="teams-wrap">
                             <span class="team">
                                 <span>
-                                    <img src="{{m.team_1.team.logo.url}}" height="25" alt="team-image">
+                                    <img src="{{m.team_1.team.logo.url}}" height="25" alt="{{m.team_1.team.name}}">
                                 </span>
                                 <span><b>{{m.team_1.team.shortname}}</b> </span>
                                 </span>
                             <span class="score">
-                                if
+                                {% if  m.winner == NONE %}
+                                <span> - : - </span>
+                                 {%else%}
+                                    {%if  m.winner == m.team_1  %}
+                                    <span> W : L </span>
+                                    {%else%}
+                                    <span> L : W </span>
+                                    {%endif%}
+                                {%endif%}
+                                {%comment%}
                                 <span>{{m.team_1_score}}:{{m.team_2_score}}</span>
+                                {%endcomment%}
                             </span>
                             <span class="team1">
                                 <span> <b>{{m.team_2.team.shortname}}</b> </span>
                                 <span><img src="{{m.team_2.team.logo.url}}" alt="team-image"></span>
                             </span>
                         </span>
-                        <span class="game-result">{{m.time}} - {{m.date}}  </span>
+                        <span class="game-result">{{m.time}} - {{m.date}}</span>
                     </a>
                     {%endfor%}
+                    {%endif%}
+
                 </div>
             </div>
         </div>
+        <!--Group Stage Matches ENDS-->
+
+        <!--Play Offs Eliminations Begins-->
         <div class="row">
             <hr>
             <div class="col-md-12 overflow-scroll">
                 <h5 >Play Offs Eliminations</h5>
                 <hr>
-                <div id="fixture1" class="fixture overflow-scroll ">
-                </div>
-                <hr>
-            </div>
-        </div>
-    </div>
-</section>
 
-
-<!--STANDING CUP BEGIN-->
-<!--
-<section class="">
-    <div class="container ">
-        <div class="row">
-
-            <div class="col-md-12 overflow-scroll">
-                <h5 >Play Offs Eliminations</h5>
-                <hr>
                 <div id="fixture" class="fixture overflow-scroll ">
                 </div>
                 <hr>
             </div>
         </div>
+        <!--Play Offs Eliminations ENDS-->
     </div>
 </section>
--->
-<!--STANDING CUP END-->
+
+
 
 
 {% endblock %}
@@ -385,7 +673,7 @@
                 $('#fixture').bracket({
                     teamWidth: 150,
                     scoreWidth: 30,
-                    matchMargin: 50,
+                    matchMargin: 100,
                     roundMargin: 100,
                     skipConsolationRound: true,
                     init: fixtureData,
@@ -405,6 +693,5 @@
             });
         {%endif%}
 </script>
-<script type="text/javascript" src="{% static 'FinalBracket_assets/jquery-1.6.2.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'FinalBracket_assets/jquery.bracket.min.js' %}"></script>
+
 {% endblock extra_scripts %}

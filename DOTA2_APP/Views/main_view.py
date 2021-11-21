@@ -261,15 +261,17 @@ def RegisterTeam_Final(request,slug):
     print('Current URL:',current_url)
     # How to Find Out the Current URL NAME
 
-    get_tournament = Tournament.objects.get(slug=slug)
-    get_All_Participates = TournamentParticipate.objects.all()
-    get_created_by = Profile.objects.get(user = request.user)
+
 
 
     if request.user.is_authenticated :
         pass
     else:
         return redirect('/register/')
+
+    get_tournament = Tournament.objects.get(slug=slug)
+    get_All_Participates = TournamentParticipate.objects.all()
+    get_created_by = Profile.objects.get(user = request.user)
 
     if get_All_Participates.filter(created_by=  get_created_by).exists():
         return redirect('/Registration-Status/')
@@ -516,7 +518,6 @@ def PaymentStatus(request,slug):
 def Tournament_View(request,slug):
     getTournament = Tournament.objects.get(slug=slug)
     navbar_Tournament = Tournament.objects.all()
-    prev_url =  request.META['HTTP_REFERER']
 
     if GroupStage.objects.filter(tournament = getTournament,group=1).exists():
         get_Group1 = GroupStage.objects.get(tournament = getTournament,group=1)
@@ -539,14 +540,25 @@ def Tournament_View(request,slug):
     else:
         get_GroupStage_data4 = 'None'
 
-    getAll_groupStage_matches1 = GroupStageMatch.objects.filter(
-        tournament = getTournament,round =1).order_by('match_number')
+    if GroupStageMatch.objects.filter(tournament = getTournament,round =1).exists():
+        getAll_groupStage_matches1 = GroupStageMatch.objects.filter(
+            tournament = getTournament,round =1).order_by('match_number')
+    else:
+        getAll_groupStage_matches1 = "None"
 
-    getAll_groupStage_matches2 = GroupStageMatch.objects.filter(
-        tournament = getTournament,round =2).order_by('match_number')
 
-    getAll_groupStage_matches3= GroupStageMatch.objects.filter(
-        tournament = getTournament,round =3).order_by('match_number')
+
+    if GroupStageMatch.objects.filter(tournament = getTournament,round =2).exists():
+        getAll_groupStage_matches2 = GroupStageMatch.objects.filter(
+            tournament = getTournament,round =2).order_by('match_number')
+    else:
+        getAll_groupStage_matches2 = "None"
+
+    if GroupStageMatch.objects.filter(tournament = getTournament,round =3).exists():
+        getAll_groupStage_matches3= GroupStageMatch.objects.filter(
+            tournament = getTournament,round =3).order_by('match_number')
+    else:
+        getAll_groupStage_matches3 = "None"
 
 
     fixture = Fixture.objects.filter(tournament = getTournament).prefetch_related(
@@ -556,6 +568,11 @@ def Tournament_View(request,slug):
 
     template = loader.get_template('frontend/tournament/TournamentPage.html')
     # template = loader.get_template('bracket/testbracket.html')
+
+    # BRACKET DESIGN 2 - From CODEPEN
+    # template = loader.get_template('bracket/bracket_design_2/bracket_design_2.html')
+
+    # BRACKET DESIGN 2 - From CODEPEN
     # print(json.dumps(results))
     context = {
             'getTournament': getTournament,
@@ -572,15 +589,11 @@ def Tournament_View(request,slug):
             'getAll_groupStage_matches1':getAll_groupStage_matches1,
             'getAll_groupStage_matches2':getAll_groupStage_matches2,
             'getAll_groupStage_matches3':getAll_groupStage_matches3,
-
-
             # Group Stage Matches
 
             'fixture': fixture,
             'teams':json.dumps(teams),
-            'teamsT':teams,
             'results': json.dumps(results),
-            'prev_url':prev_url,
         }
     return HttpResponse(template.render(context, request))
 
@@ -601,12 +614,20 @@ def get_bracket_info(fixture):
 # ---------------------------------------------------------------------------------------------------------------------------------------------------
 def Team_View(request,slug):
     getTeam = Team.objects.get(slug=slug)
-    print(getTeam)
+
+    if TournamentParticipate.objects.filter(team = getTeam).exists():
+        # print("Found")
+        get_Tournaments_Records = TournamentParticipate.objects.filter(team= getTeam).order_by("id")
+    else:
+        print("Not Found")
+    for t in get_Tournaments_Records:
+        print('[626] Tournament:',t.tournament)
 
     navbar_Tournament = Tournament.objects.all()
     context = {
         'getTeam': getTeam,
         'navbar_Tournament':navbar_Tournament,
+        'get_Tournaments_Records':get_Tournaments_Records,
     }
     return render(request,"frontend/Team/teamPage.html",context)
 # ---------------------------------------------------------------------------------------------------------------------------------------------------

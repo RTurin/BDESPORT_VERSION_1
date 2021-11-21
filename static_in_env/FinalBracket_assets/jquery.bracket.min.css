@@ -65,9 +65,9 @@ div.jQBracket .team input {
     outline: 0;
 }
 div.jQBracket .team div.label {
-    padding: 3px;
+    padding: 6px;
     position: absolute;
-    height: 22px;
+    height: 30px;
     white-space: nowrap;
     overflow: hidden;
     box-sizing: border-box;
@@ -118,15 +118,19 @@ div.jQBracket .team.tie div.score {
 }
 div.jQBracket .team.highlightWinner {
     background-color: #da0;
-    color: #000;
+    color: #fff;
 }
 div.jQBracket .team.highlightLoser {
     background-color: #ccc;
     color: #000;
 }
 div.jQBracket .team.highlight {
-    background-color: #3c0;
+
+    background-color: #decfa2;
     color: #000;
+    /*
+    background-color: #3c0;
+    */
 }
 div.jQBracket .team.bye {
     background-color: #999;

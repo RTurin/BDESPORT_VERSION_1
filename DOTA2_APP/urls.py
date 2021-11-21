@@ -48,6 +48,6 @@ urlpatterns = [
         path('Team/<slug:slug>/',main_view.Team_View,name= "Team_View"),
 
         # ---Tournament View---
-        # path('Tournament1/',tournament_view.test_view,name= "Tournament_Page"),
+        path('Tournament1/',tournament_view.test_view,name= "Tournament_Page"),
         # ---Tournament View---
 ]

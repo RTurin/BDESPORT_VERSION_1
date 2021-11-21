@@ -4,5 +4,134 @@
 {% block title %} BD ESPORT | {{getTeam}} {% endblock %}
 
 {% block content %}
+<!--CLUB STAFF TOP BEGIN-->
 
+
+<section class="player-single-wrap">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 ">
+                <div class="captain-bage"> TEAM</div>
+                <h4 class="player-name">
+                    {{getTeam.name}}
+                </h4>
+                <hr>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4 text-center">
+                <div class="player-photo">
+                    <img class="responsive-img" src="{{getTeam.logo.url}}" width="300px;" alt="player">
+
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="player-info">
+                    <h6 class="player-info-title">Summary</h5>
+
+                    <div class="summary">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-3">
+                                <div class="item"> Created By:</div>
+
+                            </div>
+
+                            <div class="col-md-9 col-sm-9 col-xs-9">
+                                {% if getTeam.created_by == NONE %}
+                                <i>N/A</i>
+                                {%else%}
+                                <b style="font-size:18px; font-weight:bold;">{{getTeam.created_by}}</b>
+                                {%endif%}
+
+
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-3">
+                                <div class="item">Joined: </div>
+                            </div>
+                            <div class="col-md-9 col-sm-9 col-xs-9">
+                                {% if getTeam.created_by.created_at == NONE %}
+                                <i>N/A</i>
+                                {%else%}
+                                {{getTeam.created_by.created_at}}
+                                {%endif%}
+                            </div>
+
+                            <div class="col-md-3 col-sm-3 col-xs-3">
+                                <div class="item">Short Name (AKA):</div>
+                            </div>
+                            <div class="col-md-9 col-sm-9 col-xs-9">
+                                {{getTeam.shortname}}
+                            </div>
+
+
+
+
+
+                        </div>
+
+                    </div>
+
+                    <hr>
+                    <h6 class="summary">Player Informations</h6>
+
+                    <div class="overflow-scroll">
+                        <table>
+                            <tr >
+                                <th >Player</th>
+                                <th class="club"> Full Name</th>
+                                <th >Role</th>
+                                <th>Estimated MMR</th>
+                            </tr>
+                            {% for m in getTeam.members.all %}
+                            <tr>
+                                <td>
+                                    <a href="https://www.dotabuff.com/players/{{m.player_id}}" target="_blank" alt="{{m.name}}">
+                                        <p style="margin-top:10px; font-size:16px;">{{m.gaming_name}}</p>
+                                    </a>
+                                </td>
+                                <td class="club">
+                                    <span style=" color:grey;" >{{m.name}}</span>
+                                </td>
+
+                                <td>{{m.role}}</td>
+                                <td><span>{{m.estimated_mmr}}</span></td>
+                            </tr>
+                            {%endfor%}
+                        </table>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+
+            <div class="col-md-12">
+                <h5>Tournaments Participated</h5>
+            </div>
+            <div class="staff-box">
+                {% for t in get_Tournaments_Records %}
+                <div class="col-md-4  col-sm-6 col-xs-12">
+                    <a href="{% url 'Tournament_Page' t.tournament.slug %}" class="item">
+                        <span class="info">
+                            <span class="name"><b>{{t.tournament.title}}</b>  </span>
+                           <span class="position">
+                                <span style="font-size:6px;">Ends/Ended:</span>
+                               <br>
+                                <b style="font-size:12px;">{{t.tournament.end_date}}</b>
+                            </span>
+                        </span>
+                        <img src="{{t.tournament.logo.url}}">
+                    </a>
+                </div>
+                {%endfor %}
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+</section>
+
+<!--CLUB STAFF TOP END-->
 {% endblock content %}

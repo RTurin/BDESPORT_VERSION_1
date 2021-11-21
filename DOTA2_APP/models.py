@@ -14,30 +14,6 @@ from ckeditor.fields import RichTextField
 
 # Create your models here.
 
-# Test Cases Starts
-# Case 1: Testing if models attributes works with splinted Views Starts
-class test1(models.Model):
-    test_title = models.CharField(max_length=100,null=True,blank=True)
-
-    def __str__(self):
-        return self.test_title
-# Case 1: Testing if models attributes works with splinted Views Ends
-
-
-# Case 2: Testing Related to Bug/Error Issue of Image not Uploading From Frontend
-
-class test2(models.Model):
-    test_title = models.CharField(max_length=100,null=True,blank=True)
-    image_upload_ResizedImageField = ResizedImageField(null=True,blank=True)
-    image_upload_default = models.ImageField()
-
-    # def __str__(self):
-    #     return self.test_title
-
-
-
-# Case 2: Testing Related to Bug/Error Issue of Image not Uploading From Frontend
-# Test Cases Ends
 
 # --------------------------------------------------------
 #  Project Model Classes Starts
@@ -213,6 +189,7 @@ class GroupStageMatch(models.Model):
     date = models.DateField("Match Date",null=True,blank=True)
     time = models.TimeField('Match Time',null=True,blank=True)
 
+    dota2_match_id = models.CharField(max_length=200,null=True,blank=True)
     match_number = models.IntegerField(blank=True, null=True)
 
     group = models.ForeignKey(GroupStage,on_delete=models.CASCADE ,related_name="groupstage_matches"
@@ -225,12 +202,13 @@ class GroupStageMatch(models.Model):
     team_2 = models.ForeignKey(
         TournamentParticipate, blank=True, null=True,on_delete=models.CASCADE,related_name="team2_groupStage")
 
-    MATCH_STATUS = [
+    MATCH_STATUS = (
+        ("TBD", "TBD"),
         ("Scheduled", "Scheduled"),
         ('Finished', 'Finished')
-    ]
+    )
     status = models.CharField(
-        max_length=30, choices=MATCH_STATUS, default='Not Scheduled')
+        max_length=30, choices=MATCH_STATUS, default='TBD',null=True,blank=True)
 
     team_1_score = models.PositiveIntegerField(default=0)
     team_2_score = models.PositiveIntegerField(default=0)
@@ -239,6 +217,10 @@ class GroupStageMatch(models.Model):
         TournamentParticipate,on_delete=models.CASCADE, blank=True, null=True, related_name="matches_won_groupStage")
 
     def __str__(self):
+        if self.status == "TBD":
+            return "Upcoming Match No# {} - {} vs {}".format(self.match_number,self.status,self.status)
+
+
         if self.status == "Scheduled":
             return "{} vs {}".format(self.team_1.team.name, self.team_2.team.name)
 
